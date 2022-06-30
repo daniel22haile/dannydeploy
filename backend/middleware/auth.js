@@ -3,7 +3,6 @@ dotenv.config();
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  
   auth: (req, res, next) => {
     try {
       const auth = req.headers.authorization;
@@ -36,12 +35,19 @@ module.exports = {
     }
   },
 
-    isAdmin: (req, res, next) => {
-      if (req.token.role === "admin") {
-        next();
-      } else {
-        res.json({ error: "Granted only for admin" });
-      }
-    },
+  isAdmin: (req, res, next) => {
+    if (req.token.role === "admin") {
+      next();
+    } else {
+      res.json({ error: "Granted only for admin" });
+    }
+  },
 
+  // isAdmin: (req, res, next) => {
+  //   if (req.token.role === "admin") {
+  //     next();
+  //   } else {
+  //     res.json({ error: "Granted only for admin" });
+  //   }
+  // },
 };
